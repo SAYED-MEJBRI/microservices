@@ -10,7 +10,8 @@ var_dump($_FILES);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$action = $_POST['action'];
-	$id = $_POST['id'];
+	$id =  $_POST['id'];
+
 	if ($action != 'DELETE') {
 		$titre = safeguard($_POST['titre']);
 		$contenu = safeguard($_POST['contenu']);
@@ -18,22 +19,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$image = safeguard(moveImage($_FILES['image']));
 		$userID = (int) safeguard($_POST['userID']);
 	}
-
+	
 	// session_unset();
 	switch ($action):
 		case 'CREATE':
 			create('microservices', $titre, $contenu, $prix, $image, $userID);
-			echo $_SESSION['message'] = '<p class="text-success my-2">Element créé</p>';
+			// echo $_SESSION['message'] = '<p class="text-success my-2">Element créé</p>';
 			// header('Location:'.WEB_ROOT.'admin/');
 			break;
 		case 'UPDATE':
+			//$id=base64_encode($id);
 			update('microservices', $id, $titre, $contenu, $prix, $image, $userID);
-			echo $_SESSION['message'] = '<p class="text-success my-2">Element mis à jour</p>';
+			// echo $_SESSION['message'] = '<p class="text-success my-2">Element mis à jour</p>';
 			// header('Location:'.WEB_ROOT.'admin/');
 			break;
 		case 'DELETE':
+			echo '$id';
+			var_dump($id);
 			delete('microservices', $id);
-			echo $_SESSION['message'] = '<p class="text-success my-2">Element supprimé</p>';
+		
+			// echo $_SESSION['message'] = '<p class="text-success my-2">Element supprimé</p>';
 			// header('Location:'.WEB_ROOT.'admin/');
 			break;
 
@@ -44,4 +49,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<a href="/microservices/dashboard.php">Admin</a>
+<a href="/microservices/admDash.php">Admin</a>

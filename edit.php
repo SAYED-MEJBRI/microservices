@@ -1,10 +1,16 @@
 <?php
 
+include  'functions.php';
 
 
-// var_dump($id);
+ 
+
+
 
 $id = isset($_GET["id"]) ? $_GET["id"] : NULL;
+echo '$id';
+var_dump($id);
+
 if (!empty($id)) {
 	$data = getSingle('microservices', $id);
 	$action = "UPDATE";
@@ -13,7 +19,7 @@ if (!empty($id)) {
 	$action = "CREATE";
 	$libelle = "Créer";
 }
-
+// var_dump($data);
 ?>
 <!doctype html>
 <html lang="en">

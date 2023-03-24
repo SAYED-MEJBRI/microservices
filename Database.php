@@ -27,3 +27,4 @@ class Database
 
     // Vous pouvez ajouter des méthodes génériques pour interagir avec la base de données ici, ou vous pouvez créer des classes spécifiques pour chaque table.
 }
+
